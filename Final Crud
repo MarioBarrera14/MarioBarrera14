@@ -1,7 +1,9 @@
 import os
 
 def ingresar_nombre():
-    """ funcion para ingresar un nombre """
+    #se crea una funcion para el ingreso de nombres
+    #con el uso de while en caso de ser verdadero los datos pasamos al ingreso de notas en caso
+    #de no ingresar ningun dato vuelve a pedirlo hasta que ingrese algun nombre
     while True:
         nombre = input("Ingrese el nombre del estudiante : ")
         if nombre=="":
@@ -18,16 +20,16 @@ def ingresar_nota():
     while True:
         try:
             nota = float(input("Ingrese la nota del estudiante (0-10):"))
-          #el uso del if else,es para que sea considerada de 0 a 10
+          #el uso del if else,determina si el numero ingresado es de 0 a 10
             if 0<=nota<=10:
                 return nota
             else:
-                print("la nota tiene que estar entre 0 y 10")
-        except:#Se utiliza except para que el programa no se caiga en caso de que se ingrese una letra o caracter en vez de numeros
+                print("La nota a ingresar tiene que estar entre 0 y 10")
+        except:#Se utiliza except para que el programa no se caiga en caso de que se ingrese una letra o caracter en vez de numeros.
             print("la nota tiene que ser un valor numerico")
           
 def promedio_notas(lista_notas):
-    """ funcion para mostrar el  promedio de notas de los estudiantes """
+  #usamos la palabra reservada len para que devuelva un valor entero la misma indica la cantidad de caracteres en la cadena de entrada.
     if len(estudiantes) == 0:
         return -1
     return sum(lista_notas)/len(lista_notas)
@@ -48,7 +50,7 @@ def cambio_Nota(alumno, listaAlumnos, listaNotas):
     if 0 <= nuevaNota <= 10:  # determino si la nota es valida(entre 0 y 10)
         listaNotas[buscar_Alumno(alumno, listaAlumnos)] = nuevaNota
     else:
-        print("La nota debe estar comprendida entre 0 y 10.")
+        print("La nota ingresada tiene que estar entre 0 y 10")
 
 def ordenar_alfabeticamente(listaAlumnos, listaNotas):
     # hago uso de sorted para que devuelva una nueva lista ordenada
@@ -57,7 +59,7 @@ def ordenar_alfabeticamente(listaAlumnos, listaNotas):
 
 def ordenado_de_Notas(listaNotas, listaAlumnos):
     # Funcion para ordenar la lista por notas de forma ascendente o descendente.
-    # preguntar al usuario que orden desea.
+    # Se pregunta al usuario que orden desea.
     orden = int(
         input("Desea ordenar las notas de forma ascendente o descendente? (1/2): "))
     if orden == 1:
@@ -71,12 +73,12 @@ def ordenado_de_Notas(listaNotas, listaAlumnos):
         return "¡ERROR!. Elija 1 para Ascendente y 2 para Descendente."
 
 def eliminar_Alumno(alumno, listaAlumnos, listaNotas):
-    # funcion para eliminar un alumno y su nota de las respectivas listas.
+    #creamos funcion para eliminar un alumno y su nota de las respectivas listas.
     # Busco el indice del alumno a eliminar.
     indice = listaAlumnos.index(alumno)
-    # Elimino de la lista al alumno con la funcion pop().
+    # Hago uso de la funcion pop() para eliminar el alumno.
     alumno_eliminado = listaAlumnos.pop(indice)
-    # Esta funcion guarda el valor eliminado, para poder volver a agregarlo si lo necesito.
+    # Esta funcion guarda el valor eliminado, para poder volver a agregarlo en caso de necesitarlo.
     nota_eliminada = listaNotas.pop(indice)
     eliminado = [alumno_eliminado, nota_eliminada]
     return tuple(eliminado)
@@ -115,6 +117,7 @@ while True:
         opcion=-1
  
     if opcion == 1:
+        #el uso de Append() Este método nos permite agregar nuevos elementos a una lista.
         estudiantes.append(ingresar_nombre())
         edades.append(ingresar_edad())
         notas.append(ingresar_nota())
@@ -130,6 +133,7 @@ while True:
           indice=buscar_Alumno(alumno,estudiantes)
           print(f"El alumno {alumno} se encuentra en el indice {indice}")
           cont = input("Desea buscar otro alumno? (S/N): ")
+          #Usamos la funcion upper para el uso de mayuscula o viceversa
           if cont.upper() == "S":
                 continue
           else:
